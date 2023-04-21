@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>322</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">* {
+	font: 12pt &quot;Candara&quot;;
+	color: rgb(225, 225, 225);
+/*	background-color: rgb(39, 39, 52);*/
+	background-color: rgb(49, 49, 49);
+}
+
+#btnOpen {
+	border: 2px solid #e1e1e1;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+#fftWidget, #histoWidget, #imageview {
+/*	background-color: rgb(176, 187, 255);*/
+/*	background-color: rgb(4, 144, 145);*/
+	background-color: #e1e1e1;
+}
+
+#filterSize::handle:horizontal {
+	background: #e1e1e1;
+    border: 1px solid rgb(49, 49, 49);
+    width: 10px;
+    margin: -2px 0;
+    border-radius: 5px;
+}
+
+#label_3, #label_2 {
+	background: None;
+	padding-left: 7px;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QPushButton" name="btnOpen">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>161</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>open</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="labelCheck">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>100</y>
+      <width>201</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>button not clicked</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>322</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
