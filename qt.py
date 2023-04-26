@@ -2,6 +2,10 @@
 #### IMPORTS
 ############################
 
+
+# CHECK BRIGHTNESS
+# CHECK CLR THEORY
+
 import os, sys, cv2, colorsys, time
 import numpy as np
 import pandas as pd
@@ -12,6 +16,7 @@ from collections import Counter
 from sklearn.cluster import KMeans
 from skimage.color import rgb2lab, deltaE_cie76, rgb2hsv
 
+import pyqtgraph as pg
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import *
@@ -40,13 +45,12 @@ class MainWindow(QtWidgets.QMainWindow):
         ############################
         #### LOAD UI FILE
         ############################
-        uic.loadUi(r'qt.ui', self)
+        uic.loadUi(r'ui1.ui', self)
 
 
         ############################
         #### BUTTON CONNECTIONS
         ############################
-        # self.img1, self.img2 = [[]], [[]]
         self.img = [[]]
         self.height, self.width = 500, 500      # resizing
         self.margin = 100       # ROI window margin
@@ -68,25 +72,24 @@ class MainWindow(QtWidgets.QMainWindow):
         self.btnMatch.clicked.connect(lambda: self.checkMatch())
         self.btnClear.clicked.connect(lambda: self.clear())
 
-        # 3 labels to change
-        '''
-        self.lblColor1
-        self.lblColor2
-        self.lblMatch
-        '''
 
         ############################
         #### GLOBAL VARIABLES
         ############################
-        # self.imageview = self.findChild(QLabel, "imageview")
-        # self.disply_width = 550
-        # self.display_height = 500
+        self.graph = pg.PlotItem()
+        pg.PlotItem.hideAxis(self.graph, 'left')
+        pg.PlotItem.hideAxis(self.graph, 'bottom')
+
+        self.wdgColor1.setCentralItem(self.graph)
+        self.wdgColor1.setBackground(QtGui.QColor('#e1e1e1'))
+
+        self.wdgColor2.setCentralItem(self.graph)
+        self.wdgColor2.setBackground(QtGui.QColor('#e1e1e1'))
         
 
     ############################
     #### FUNCTION DEFINITIONS
     ############################
-
 
     def openImg(self, val):
         # browse for image
@@ -108,19 +111,17 @@ class MainWindow(QtWidgets.QMainWindow):
         # set background color of empty label
         if val == 1 :
             self.clr1 = clrRGB
-            self.lblColor1.setText(f"RGB : {clrRGB}\nHEX : {clrHEX}")
+            # self.lblColor1.setText(f"RGB : {clrRGB}\nHEX : {clrHEX}")
+            self.wdgColor1.setBackground(QtGui.QColor(clrHEX))
         else :
             self.clr2 = clrRGB
-            self.lblColor2.setText(f"RGB : {clrRGB}\nHEX : {clrHEX}")
-        '''
-        # to change background color try this
-        self.lblColor1.setStyleSheet("background-color: #e1e1e1")
-        '''
+            # self.lblColor2.setText(f"RGB : {clrRGB}\nHEX : {clrHEX}")
+            self.wdgColor2.setBackground(QtGui.QColor(clrHEX))
 
         if len(self.clr1) != 0 and len(self.clr2) != 0 :
             self.btnMatch.setEnabled(True)
 
-    def checkBrightness(self, img, threshold=180):
+    def checkBrightness(self, img, threshold=150):
         """
         checks the overall brightness of an image
         to make sure colors are interpreted correctly
@@ -156,7 +157,7 @@ class MainWindow(QtWidgets.QMainWindow):
         return RGB and HEX
 
         average color vs dominant color !!!
-        """
+        # """
         avgRow = np.average(img, axis=0)
         avg = np.average(avgRow,axis=0).astype(int)
         return avg
@@ -173,7 +174,7 @@ class MainWindow(QtWidgets.QMainWindow):
 
         print(f"rgb : {clrsRGB}, type : {type(clrsRGB)}")
         print(f"hex : {clrsHEX}, type : {type(clrsHEX)}")
-        return clrsRGB, clrsHEX
+        return clrsRGB[0]
         
     def RGB2HEX(self, color):
         return "#{:02x}{:02x}{:02x}".format(int(color[0]), int(color[1]), int(color[2]))
