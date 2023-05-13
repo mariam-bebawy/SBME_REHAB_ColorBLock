@@ -45,7 +45,7 @@ class MainWindow(QtWidgets.QMainWindow):
         ############################
         #### LOAD UI FILE
         ############################
-        uic.loadUi(r'ui1.ui', self)
+        uic.loadUi(r'ui.ui', self)
 
 
         ############################
@@ -53,7 +53,6 @@ class MainWindow(QtWidgets.QMainWindow):
         ############################
         self.img = [[]]
         self.height, self.width = 500, 500      # resizing
-        self.margin = 100       # ROI window margin
         self.window = [[]]      # ROI window
         self.clr1, self.clr2 = [], []
 
@@ -137,7 +136,7 @@ class MainWindow(QtWidgets.QMainWindow):
         if brightness < threshold : return 0
         else : return 1
 
-    def getROI(self, img):
+    def getROI(self, img, margin=100):
         """
         resizing of image to given width and height
         cropping ROI of image to get ROI window
@@ -146,22 +145,24 @@ class MainWindow(QtWidgets.QMainWindow):
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         h, w, c = img.shape
         self.window = img[
-            h//2-self.margin:h//2+self.margin, 
-            w//2-self.margin:w//2+self.margin
+            h//2-margin:h//2+margin, 
+            w//2-margin:w//2+margin
         ]
         return img
     
-    def getColor(self, img, n=1):
+    def getColor(self, img, n=3):
         """
         kmeans method on ROI
         return RGB and HEX
 
         average color vs dominant color !!!
-        # """
-        avgRow = np.average(img, axis=0)
-        avg = np.average(avgRow,axis=0).astype(int)
-        return avg
+        """
+        # AVERAGING IS THE SAME AS CHOOSING n_clusters=1
+        # avgRow = np.average(img, axis=0)
+        # avg = np.average(avgRow,axis=0).astype(int)
+        # return avg
 
+        # kmeans METHOD RETURNS COLOURS IN ORDER OF MOST DOMINANT
         imgMod = img.reshape(img.shape[0] * img.shape[1], 3)
         clf = KMeans(n_clusters = n)
         labels = clf.fit_predict(imgMod)
@@ -182,38 +183,28 @@ class MainWindow(QtWidgets.QMainWindow):
     def checkMatch(self):
         for clrThr in self.clrThrFUNC:
             CLRS = clrThr(self.clr1)
-            print(CLRS)
-
+            # print(CLRS)
             for i in CLRS:
-                rRange, gRange, bRange = self.createRange(i, 10)
-                if self.checkClrRange(self.clr2, rRange, gRange, bRange) :
+                rRange, gRange, bRange = self.createRange(i)
+                # H2YFHA FOR NOW
+                if not self.checkClrRange(self.clr2, rRange, gRange, bRange) :
                     self.lblMatch.setText("colors are all safe !\ncolors are a good match !")
                     break
                 else :
                     self.lblMatch.setText("colors are out of range !\ntry another piece")
-
-
-        # clr1Comp = self.complimentary(self.clr1)
-        # for i in clr1Comp:
-        #     rRange, gRange, bRange = self.createRange(i, 10)
-        #     if self.checkClrRange(self.clr2, rRange, gRange, bRange) :
-        #         self.lblMatch.setText("colors are all safe !\ncolors are a good match !")
-        #         break
-        #     else :
-        #         self.lblMatch.setText("colors are out of range !\ntry another piece")
 
     def createRange(self, clr, margin=10):
         """
         create R G B ranges to check for match
         """
         r, g, b = clr
-        rRange = set(range(r-margin, r+margin))
-        gRange = set(range(g-margin, g+margin))
-        bRange = set(range(b-margin, b+margin))
-        # print(f"r Range : {rRange}\ng Range : {gRange}\nb Range : {bRange}\n")
+        rRange = list(range(r-margin, r+margin))
+        gRange = list(range(g-margin, g+margin))
+        bRange = list(range(b-margin, b+margin))
+        print(f"r Range : {rRange}\ng Range : {gRange}\nb Range : {bRange}\n")
         return rRange, gRange, bRange
     
-    def checkClrRange(self, clr, rRange, gRange, bRange, match=False):
+    def checkClrRange(self, clr, rRange, gRange, bRange):
         """
         check given color with color ranges
         """
@@ -304,9 +295,11 @@ class MainWindow(QtWidgets.QMainWindow):
     
     def clear(self):
         self.clr1, self.clr2 = [], []
-        self.lblColor1.setText("")
-        self.lblColor2.setText("")
+        self.wdgColor1.setBackground(QtGui.QColor('#e1e1e1'))
+        self.wdgColor2.setBackground(QtGui.QColor('#e1e1e1'))
         self.lblMatch.setText("")
+        self.btnMatch.setEnabled(False)
+
 
 ############################
 #### CALL MAIN FUNCTION
