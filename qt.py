@@ -186,7 +186,6 @@ class MainWindow(QtWidgets.QMainWindow):
             # print(CLRS)
             for i in CLRS:
                 rRange, gRange, bRange = self.createRange(i)
-                # H2YFHA FOR NOW
                 if not self.checkClrRange(self.clr2, rRange, gRange, bRange) :
                     self.lblMatch.setText("colors are all safe !\ncolors are a good match !")
                     break
