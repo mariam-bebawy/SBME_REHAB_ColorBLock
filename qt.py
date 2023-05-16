@@ -45,8 +45,11 @@ class MainWindow(QtWidgets.QMainWindow):
         ############################
         #### LOAD UI FILE
         ############################
-        uic.loadUi(r'ui.ui', self)
-
+        uic.loadUi(r'refurbished.ui', self)
+        
+        # # SET FRAMLESS WINDOW
+        # flags = QtCore.Qt.WindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
+        # self.setWindowFlags(flags)
 
         ############################
         #### BUTTON CONNECTIONS
@@ -187,19 +190,19 @@ class MainWindow(QtWidgets.QMainWindow):
             for i in CLRS:
                 rRange, gRange, bRange = self.createRange(i)
                 if not self.checkClrRange(self.clr2, rRange, gRange, bRange) :
-                    self.lblMatch.setText("colors are all safe !\ncolors are a good match !")
+                    self.lblMatch.setText("IT'S A MATCH ! :D")
                     break
                 else :
-                    self.lblMatch.setText("colors are out of range !\ntry another piece")
+                    self.lblMatch.setText("NOT A MATCH :(")
 
     def createRange(self, clr, margin=10):
         """
         create R G B ranges to check for match
         """
         r, g, b = clr
-        rRange = list(range(r-margin, r+margin))
-        gRange = list(range(g-margin, g+margin))
-        bRange = list(range(b-margin, b+margin))
+        rRange = set(range(r-margin, r+margin))
+        gRange = set(range(g-margin, g+margin))
+        bRange = set(range(b-margin, b+margin))
         print(f"r Range : {rRange}\ng Range : {gRange}\nb Range : {bRange}\n")
         return rRange, gRange, bRange
     

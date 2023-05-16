@@ -7,20 +7,25 @@
     <x>0</x>
     <y>0</y>
     <width>497</width>
-    <height>808</height>
+    <height>873</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Color Block</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>misc/ex.png</normaloff>misc/ex.png</iconset>
   </property>
   <property name="layoutDirection">
    <enum>Qt::LeftToRight</enum>
   </property>
   <property name="styleSheet">
    <string notr="true">* {
-/*	font: 12pt &quot;Courier New&quot;;
+/*
+	font: 12pt &quot;Courier New&quot;;
 */
-	font: 12pt &quot;Helvetica&quot;;	
+	font: 12pt &quot;Franklin Gothic Medium&quot;;	
 	background-color: #e1e1e1;
 }
 .QPushButton {
@@ -71,6 +76,12 @@
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1,0">
+        <property name="topMargin">
+         <number>30</number>
+        </property>
+        <property name="bottomMargin">
+         <number>30</number>
+        </property>
         <item>
          <spacer name="horizontalSpacer">
           <property name="orientation">
@@ -325,7 +336,7 @@ H</string>
      <x>0</x>
      <y>0</y>
      <width>497</width>
-     <height>30</height>
+     <height>31</height>
     </rect>
    </property>
   </widget>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>470</width>
+    <height>660</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>COLOR BLOCK</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>misc/ex.png</normaloff>misc/ex.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">* {
+	font: 12pt &quot;Franklin Gothic&quot;;
+	background-color: #e1e1e1;
+	padding: 0;
+	margin: 0;
+}
+#centralwidget {
+	background-color: #1a3638;
+	background-color: #3c6265;
+}
+.QFrame {
+	border: 3px solid #091414;
+	border-radius: 8px;
+	padding-right: 10px;
+	padding-left: 10px;	
+	background-color: #091414;
+}
+.QPushButton {
+	background-color: #3c6265;
+	border: 3px solid #3c6265;
+	border-radius: 8px;
+	padding-right: 10px;
+	padding-left: 10px;
+	color: #e1e1e1;
+	font-weight: bold;
+}
+.QPushButton:hover {
+	background-color: #02938B;
+	border: 2px solid #02938B;
+	color: #e1e1e1;
+	font-weight: bold;
+}
+.QLabel {
+	background-color: #e1e1e1;
+	padding-left: 0px;
+}
+#lblClearU {
+	border: 2px solid #02938B;
+	border-radius: 5px;
+	background-color: #029388;
+}
+#lblMatch {
+	border: 3px solid #243030;
+	border-radius: 8px;
+	font: 22pt;
+	font-weight: bold;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+#wdgColor1, #wdgColor2 {
+	background-color: #e1e1e1;
+	border: 3px solid #243030;
+	border-radius: 8px;
+}
+#lblName {
+	background: None;
+	color: #e1e1e1;
+	font: 42px;
+	font-weight: bold;
+	letter-spacing: 2px;
+}
+/*
+#btnClear {
+	background-color: #fd7168;
+	border: solid #fd7168;
+	color: #091414;
+}
+*/
+#btnMatch:hover {
+	background-color: #fee0bc;
+	color: #091414;
+	border: 2px solid #fee0bc;
+}
+#btnClear:hover {
+	background-color: #fd7168;
+	color: #091414;
+	border: 2px solid #fd7168;
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="frameImg">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>140</y>
+      <width>430</width>
+      <height>160</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="btnOpen2">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>150</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>IMAGE 2</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnOpen1">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>150</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>IMAGE 1</string>
+     </property>
+    </widget>
+    <widget class="PlotWidget" name="wdgColor1" native="true">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>20</y>
+       <width>220</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>800</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+    </widget>
+    <widget class="PlotWidget" name="wdgColor2" native="true">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>90</y>
+       <width>220</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>800</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QFrame" name="frame">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>320</y>
+      <width>430</width>
+      <height>270</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Raised</enum>
+    </property>
+    <widget class="QPushButton" name="btnMatch">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>320</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
+     </property>
+     <property name="text">
+      <string>M  A  T  C  H</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="btnClear">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>20</y>
+       <width>50</width>
+       <height>50</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>X</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="lblMatch">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>90</y>
+       <width>390</width>
+       <height>160</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QLabel" name="lblName">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>430</width>
+      <height>60</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>COLOR BLOCK</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignBottom|Qt::AlignHCenter</set>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>470</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlotWidget</class>
+   <extends>QWidget</extends>
+   <header location="global">pyqtgraph</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources>
+  <include location="src.qrc"/>
+ </resources>
+ <connections/>
+</ui>

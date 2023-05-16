@@ -16,3 +16,6 @@ Mobile APP for color-matching of clothes targeted towards the colorblind
 - [x] main functions / functionality  
 - [x] app interface / UI  
 - [x] app integration  
+- [ ] update UI  
+- [ ] final presentation  
+- [ ] 
