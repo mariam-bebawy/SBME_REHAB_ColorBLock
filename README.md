@@ -1,21 +1,19 @@
-# SBME_REHABColorBLock  
-Mobile APP for color-matching of clothes targeted towards the colorblind  
+# _"Color Block"_ - Color Matching  
+#### SBME_REHABColorBLock <sub>_(repo name)_</sub>  
 ---  
 
-* `idea` folder contains the presentation file for the project's idea  
-* `imgs` folder contains the images used for testing  
+***Desktop APP***  
+
+_**Short Description :**_ Mobile APP for color-matching of clothes targeted towards the colorblind  
+---  
+
+_**DEMO**_  
+![](./misc/demo.gif)  
+---  
+
 * `code` folder contains *.py* files used for debugging  
-* `litRev` folder contains literature review files  
-* `misc` folder contains miscellaneous files used as input  
+* `misc` folder contains miscellaneous files used as input or saved output  
 * `notebooks` folder contains *.ipynb* files used for debugging  
-* `presentation` folder contains *.pptx* files used for presentations of project phases  
-* `report` folder contains the final report for this project  
+* `presentations` folder contains *.pptx* files used for presentations of project phases  
+* `report` folder contains multiple reports for this project  
 ---  
-
-***TO DO***  
-- [x] main functions / functionality  
-- [x] app interface / UI  
-- [x] app integration  
-- [ ] update UI  
-- [ ] final presentation  
-- [ ] 

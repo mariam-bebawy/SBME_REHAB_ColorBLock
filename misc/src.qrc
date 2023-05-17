@@ -1,6 +1,0 @@
-<RCC>
-  <qresource prefix="newPrefix">
-    <file>blue.png</file>
-    <file>wallpaper.jpg</file>
-  </qresource>
-</RCC>
